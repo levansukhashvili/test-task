@@ -1,0 +1,22 @@
+<div class="container">
+  <mat-stepper labelPosition="bottom" [selectedIndex]="activeStep">
+    <mat-step *ngFor="let step of steps; let i = index"
+              [completed]="activeStep > step">
+      <router-outlet *ngIf="i === activeStep"></router-outlet>
+    </mat-step>
+  </mat-stepper>
+
+
+  <div class="d-flex justify-content-end">
+    <button *ngIf="prevUrl"
+            mat-button
+            color="primary"
+            (click)="back()">Back</button>
+    <button *ngIf="nextUrl || isLastStep"
+            mat-stroked-button
+            color="primary"
+            (click)="next()"
+            [disabled]="isButtonDisabled">{{isLastStep ? 'Save' : 'Next'}}</button>
+  </div>
+
+</div>
